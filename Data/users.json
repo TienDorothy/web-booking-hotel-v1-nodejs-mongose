@@ -1,0 +1,26 @@
+[{
+  "_id": {
+    "$oid": "66606bc9be74eac519b1c30a"
+  },
+  "username": "nguyentien071995@gmail.com",
+  "password": "$2b$10$02ZUzMvdTgGUwoBn1PAK8OquyDbZdmIEQPIWmFAmPYjOg9pjxN4Ui",
+  "fullName": "nguyentien071995",
+  "phone": "0775897727",
+  "email": "nguyentien071995@gmail.com",
+  "isAdmin": true,
+  "__v": 0,
+  "img": "http://res.cloudinary.com/dj6nt0z1u/image/upload/v1717857902/upload/uo0dot0a3p64nd5ayywh.jpg"
+},
+{
+  "_id": {
+    "$oid": "66631da34b6abb1ea9914fc0"
+  },
+  "username": "nguyentien",
+  "password": "$2b$10$7lY3rwcqSl41r5wKmbXZLuL490otFTPENcxXYS1Ocuno9EYFuRS1O",
+  "fullName": "AHjkLKKLK",
+  "phone": "0775897721",
+  "email": "tienntcFX20212@funix.edu.vn",
+  "isAdmin": false,
+  "img": "http://res.cloudinary.com/dj6nt0z1u/image/upload/v1717771681/upload/dwqvzmendwdyr3atdbmo.jpg",
+  "__v": 0
+}]

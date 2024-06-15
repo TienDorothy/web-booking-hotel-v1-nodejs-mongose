@@ -1,7 +1,6 @@
 const User = require("../models/User");
 const bcrypt = require("bcrypt");
 const jwt = require("jsonwebtoken");
-// const { createError } = require('../utils/error');
 
 const createError = require("http-errors");
 

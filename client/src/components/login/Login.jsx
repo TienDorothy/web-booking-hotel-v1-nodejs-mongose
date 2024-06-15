@@ -16,7 +16,12 @@ function Login() {
     register,
     handleSubmit,
     formState: { errors },
-  } = useForm({});
+  } = useForm({
+    defaultValues: {
+      username:'user@123',
+      password:'user@123'
+    }
+  });
 
   if (user) {
     return <Navigate to='/' />;

@@ -2,7 +2,7 @@ import './style/dark.scss';
 import './style/app.scss';
 
 import { BrowserRouter, Routes, Route, Navigate } from 'react-router-dom';
-import { hotelInputs, loginInputs, roomInputs, userInputs } from './formSource';
+import { hotelInputs, loginDefaultValues, loginInputs, roomInputs, userInputs } from './formSource';
 import { useContext } from 'react';
 import { DarkModeContext } from './context/darkModeContext';
 import { AuthContext } from './context/AuthContext';
@@ -36,7 +36,7 @@ function App() {
       <BrowserRouter>
         <Routes>
           <Route path='/'>
-            <Route path='login' element={<Login inputs={loginInputs}/>} />
+            <Route path='login' element={<Login inputs={loginInputs} />} />
             <Route
               index
               element={

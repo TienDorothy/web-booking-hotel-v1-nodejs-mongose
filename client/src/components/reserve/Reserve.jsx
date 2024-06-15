@@ -37,6 +37,7 @@ const schema = yup.object({
 function Reserve({ hotelId, priceDefault }) {
   const navigate = useNavigate();
   const { data, loading, error } = useFetch(hotelsApi.getRooms(hotelId));
+  console.log('data', data)
   const { dates } = useContext(SearchContext);
   const { user } = useContext(AuthContext);
   let defaultValues = {
@@ -177,12 +178,12 @@ function Reserve({ hotelId, priceDefault }) {
                     return (
                       <div className="room" key={i}>
                         <div className="roomDesc">
-                          <p className="title">{room.title}</p>
-                          <p>{room.desc}</p>
+                          <p className="title">{room?.title}</p>
+                          <p>{room?.desc}</p>
                           <p className="people">
-                            Max people: <strong>{room.maxPeople}</strong>
+                            Max people: <strong>{room?.maxPeople}</strong>
                           </p>
-                          <p className="price">${room.price}</p>
+                          <p className="price">${room?.price}</p>
                         </div>
                         <div className="roomNumbers">
                           {room &&

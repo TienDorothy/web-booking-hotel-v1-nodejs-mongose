@@ -6,7 +6,7 @@ import { useForm } from "react-hook-form";
 import { authApi } from "../../api/apiConfig";
 import axiosConfig from "../../api/axiosConfig";
 
-function Login({ inputs }) {
+function Login({ inputs , defaultValues}) {
   const navigate = useNavigate();
   const { user, loading, error, dispatch } = useContext(AuthContext);
   const [postLoading, setPostLoading] = useState(false);
@@ -15,7 +15,12 @@ function Login({ inputs }) {
     register,
     handleSubmit,
     formState: { errors },
-  } = useForm({});
+  } = useForm({
+    defaultValues: {
+      username:'user@123',
+      password:'user@123',
+    }
+  });
   const onSubmit = async (data) => {
     const credential = { ...data };
 

@@ -1,12 +1,14 @@
 const dotenv = require("dotenv");
+dotenv.config();
 const mongoose = require("mongoose");
 const express = require("express");
 const session = require("express-session");
-const MongoDBStore = require("connect-mongodb-session")(session);
+// const MongoDBStore = require("connect-mongodb-session")(session);
 const cookieParser = require("cookie-parser");
 const cors = require("cors");
+const port=process.env.PORT
 
-dotenv.config();
+
 
 const authRoute = require("./routes/auth");
 const hotelsRoute = require("./routes/hotels");
@@ -23,10 +25,10 @@ const connectMongoDb = async () => {
   
 };
 const app = express();
-const store = new MongoDBStore({
-  uri: process.env.URL,
-  collection: "sessions",
-});
+// const store = new MongoDBStore({
+//   uri: process.env.URL,
+//   collection: "sessions",
+// });
 
 //middlewares
 app.use(express.json());
@@ -42,14 +44,14 @@ app.use(
   })
 );
 
-app.use(
-  session({
-    secret: process.env.SESSION,
-    resave: false,
-    saveUninitialized: false,
-    store: store,
-  })
-);
+// app.use(
+//   session({
+//     secret: process.env.SESSION,
+//     resave: false,
+//     saveUninitialized: false,
+//     store: store,
+//   })
+// );
 
 // route
 app.use("/api/auth", authRoute);
@@ -69,8 +71,7 @@ app.use((err, req, res, next) => {
     stack: err.stack,
   });
 });
-const port=process.env.PORT
-// const port = 5001;
+
 app.listen(port, () => {
   connectMongoDb();
   console.log("Connect port:", port);

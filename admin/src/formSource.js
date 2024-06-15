@@ -7,6 +7,7 @@ export const loginInputs = [
     placeholder: 'password',
   },
 ];
+
 export const userInputs = [
   { id: 'username', label: 'Username', type: 'text', placeholder: 'john_doe' },
   { id: 'fullName', label: 'Full Name', type: 'text', placeholder: 'john_doe' },

@@ -30,8 +30,6 @@ const Hotel = () => {
 
   const { data, loading, error } = useFetch(hotelsApi.getById(hotelId));
   const { destination, dates, options, diffDay } = useContext(SearchContext);
-  console.log('dates', dates)
-  console.log('new', new Date())
   const { user } = useContext(AuthContext);
   const handleOpen = i => {
     setSlideNumber(i);

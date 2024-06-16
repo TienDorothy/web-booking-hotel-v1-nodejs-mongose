@@ -11,7 +11,6 @@ const useFetch = (endpoint) => {
       try {
         const result = await axiosConfig.get(endpoint);
         setData(result.data);
-        // setData(result.data);
       } catch (error) {
         setError(error);
       }

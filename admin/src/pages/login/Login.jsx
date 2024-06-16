@@ -29,7 +29,7 @@ function Login({ inputs , defaultValues}) {
 
     try {
       const response = await axiosConfig.post(authApi.adminLogin, credential);
-      console.log('response.data', response.data)
+      
       if (response.status === 200) {
         dispatch({ type: AuthActions.login_success, payload: response.data });
         navigate("/");

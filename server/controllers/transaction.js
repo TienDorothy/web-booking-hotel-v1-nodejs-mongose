@@ -39,18 +39,23 @@ exports.getTransactionByUser = async (req, res, next) => {
 };
 exports.getTransactions = async (req, res, next) => {
   // ,userId,hotelId->name, room:number, date :2cai, price, payment,status
-  let { limit } = req.query;
+  let limit = req.query.limit;
 
   try {
     const transactions = await Transaction.find()
       .sort({ dateStart: -1 })
       .limit(limit ? limit : 0);
     let transformTrans = [];
+
     for (const trans of transactions) {
       const { userId, hotelId, rooms, dateStart, dateEnd, ...other } =
         trans._doc;
       const user = await User.findById(userId);
+      if (!user) continue;
+
       const hotel = await Hotel.findById(hotelId);
+      if (!hotel) continue;
+
       const username = user.username;
       const hotelName = hotel.name;
       const roomNumbers = rooms
@@ -59,22 +64,25 @@ exports.getTransactions = async (req, res, next) => {
       const date = `${new Date(dateStart).toLocaleDateString(
         "en-GB"
       )} - ${new Date(dateEnd).toLocaleDateString("en-GB")}`;
-      transformTrans.push({
+
+      let transformItem = {
         ...other,
         username,
         hotelName,
         roomNumbers,
         date,
-      });
+      };
+      transformTrans.push(transformItem);
     }
-
+    console.log(transformTrans);
     return res.status(200).json(transformTrans);
-  } catch (error) {}
+  } catch (error) {
+  }
 };
 exports.getSummary = async (req, res, next) => {
   try {
-    const userCount = await User.countDocuments()
-    const transactions = await Transaction.find()
+    const userCount = await User.countDocuments();
+    const transactions = await Transaction.find();
     const orders = transactions.length;
     const earings = transactions
       .map((item) => item.price)

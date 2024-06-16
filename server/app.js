@@ -5,9 +5,7 @@ const express = require("express");
 const session = require("express-session");
 const cookieParser = require("cookie-parser");
 const cors = require("cors");
-const port=process.env.PORT
-
-
+const port = process.env.PORT;
 
 const authRoute = require("./routes/auth");
 const hotelsRoute = require("./routes/hotels");
@@ -21,7 +19,6 @@ const connectMongoDb = async () => {
   } catch (err) {
     throw new Error(err);
   }
-  
 };
 const app = express();
 
@@ -49,7 +46,7 @@ app.use("/api/transactions", transactionRoute);
 // handle error
 app.use((err, req, res, next) => {
   const errorStatus = err.status || 500;
-  const errorMessage = err.message || "Something went wrong!";
+  const errorMessage = err.message || "Internal server error";
   return res.status(errorStatus).json({
     success: false,
     status: errorStatus,

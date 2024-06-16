@@ -9,7 +9,7 @@ import axiosConfig from "../../api/axiosConfig";
 const Datatable = ({ columns, action, title }) => {
   const location = useLocation();
   const pathName = location.pathname.split("/")[1];
-  const path = pathName === "" ? "transactions?limit=8" : pathName;
+  const path = pathName === "" ? "transactions" : pathName;
   const [list, setList] = useState();
   const { data, loading, error } = useFetch(`/${path}`);
   useEffect(() => {

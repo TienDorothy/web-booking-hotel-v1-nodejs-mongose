@@ -3,7 +3,6 @@ dotenv.config();
 const mongoose = require("mongoose");
 const express = require("express");
 const session = require("express-session");
-// const MongoDBStore = require("connect-mongodb-session")(session);
 const cookieParser = require("cookie-parser");
 const cors = require("cors");
 const port=process.env.PORT
@@ -25,10 +24,6 @@ const connectMongoDb = async () => {
   
 };
 const app = express();
-// const store = new MongoDBStore({
-//   uri: process.env.URL,
-//   collection: "sessions",
-// });
 
 //middlewares
 app.use(express.json());
@@ -43,15 +38,6 @@ app.use(
     credentials: true,
   })
 );
-
-// app.use(
-//   session({
-//     secret: process.env.SESSION,
-//     resave: false,
-//     saveUninitialized: false,
-//     store: store,
-//   })
-// );
 
 // route
 app.use("/api/auth", authRoute);

@@ -28,7 +28,7 @@ exports.register = async (req, res, next) => {
     });
 
     await newUser.save();
-    
+
     return res.status(200).send("Registration successful");
   } catch (error) {
     next(error);
@@ -51,21 +51,20 @@ exports.postLogin = async (req, res, next) => {
       { id: user._id, isAdmin: user.isAdmin },
       process.env.JWT
     );
-    console.log("token :>> ", token);
-    const { password, isAdmin, ...otherDetails } = user._doc;
 
+    const { password, isAdmin, ...otherDetails } = user._doc;
+    console.log("Login user success >>", otherDetails._id);
     res
       .cookie("token", token, {
         httpOnly: true,
       })
       .status(200)
-      .json({ details: { ...otherDetails }, isAdmin });
+      .json({ details: { ...otherDetails }, token });
   } catch (err) {
     next(err);
   }
 };
 exports.adminLogin = async (req, res, next) => {
-  console.log("admin login", req.body.username);
   try {
     const user = await User.findOne({ username: req.body.username });
     if (!user) return next(createError(404, "User not found"));
@@ -84,15 +83,16 @@ exports.adminLogin = async (req, res, next) => {
       { id: user._id, isAdmin: user.isAdmin },
       process.env.JWT
     );
-    console.log("token :>> ", token);
     const { password, isAdmin, ...otherDetails } = user._doc;
+
+    console.log("Login Admin success >>", otherDetails._id);
 
     res
       .cookie("token", token, {
         httpOnly: true,
       })
       .status(200)
-      .json({ details: { ...otherDetails }, isAdmin });
+      .json({ details: { ...otherDetails }, isAdmin, token });
   } catch (err) {
     next(err);
   }
@@ -100,8 +100,6 @@ exports.adminLogin = async (req, res, next) => {
 exports.logout = (req, res, next) => {
   req.session.destroy(() => {
     res.clearCookie("token");
-
-    
     return res.status(200).json("Logout success");
   });
 };

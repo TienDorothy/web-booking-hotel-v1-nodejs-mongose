@@ -10,7 +10,7 @@ import {
   faCircleXmark,
   faLocationDot,
 } from '@fortawesome/free-solid-svg-icons';
-import { useContext, useState } from 'react';
+import { useContext, useEffect, useState } from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
 import useFetch from '../../hooks/useFetch';
 
@@ -31,11 +31,15 @@ const Hotel = () => {
   const { data, loading, error } = useFetch(hotelsApi.getById(hotelId));
   const { destination, dates, options, diffDay } = useContext(SearchContext);
   const { user } = useContext(AuthContext);
+
+  useEffect(()=>{
+    
+  },[hotelId]);
+
   const handleOpen = i => {
     setSlideNumber(i);
     setOpen(true);
   };
-
   const handleMove = direction => {
     let newSlideNumber;
 
@@ -63,6 +67,7 @@ const Hotel = () => {
   // console.log(data);
 
   let score = 9.8;
+
   return (
     <>
       <Navbar />

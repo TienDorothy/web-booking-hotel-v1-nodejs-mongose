@@ -74,7 +74,6 @@ exports.getTransactions = async (req, res, next) => {
       };
       transformTrans.push(transformItem);
     }
-    console.log(transformTrans);
     return res.status(200).json(transformTrans);
   } catch (error) {
   }
